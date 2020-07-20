@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Text Editor</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li title="Salvar Arquivo"><label for="save"><i id="save" class="fa fa-save"></i></label></li>
+            <li title="Alterar Fonte">
+                <select name="fonts" id="fonts" onchange="changeFont(this.value)">
+                    <option value="Arial">Arial</option>
+                    <option value="Algerian">Algerian</option>
+                    <option value="Calibri">Calibri</option>
+                    <option value="Comic Sans MS">Comic Sans MS</option>
+                    <option value="Berlin Sans FB Demi">Berlin Sans FB Demi</option>
+                    <option value="Forte">Forte</option>
+                    <option value="French Script MT">French Script MT</option>
+                    <option value="Kristen ITC">Kristen ITC</option>
+                </select>
+            </li>
+            <li><input title="Tamanho da Fonte" type="number" value="3" name="tamanho" id="tamanho" max="7" min="1" onchange="changeSize(this.value)"></li>            
+            <li title="Cor da Fonte"><input type="color" name="" id="color" onchange="changeColor(this.value)"></li>
+            <li title="Negrito"><label for="bold"><i id="bold" class="fa fa-bold"></i></label></li>
+            <li title="Itálico"><label for="italic"><i id="italic" class="fa fa-italic"></i></label></li>
+            <li title="Sublinhado"><label for="underline"><i id="underline" class="fa fa-underline"></i></label></li>
+            <li title="Tachado"><label for="tachado"><i id="tachado" class="fa fa-strikethrough"></i></label></li>
+            <li title="Alinhar à Esquerda"><label for="left"><i id="left" class="fa fa-align-left"></i></label></li>
+            <li title="Alinhar ao Centro"><label for="center"><i id="center" class="fa fa-align-center"></i></label></li>
+            <li title="Alinhar à Direita"><label for="right"><i id="right" class="fa fa-align-right"></i></label></li>
+            <li title="Inserir Link"><label for="link"><i id="link" class="fa fa-link"></i></label></li>
+            <li title="Remover Link"><label for="unlink"><i id="unlink" class="fa fa-unlink"></i></label></li>
+        </ul>
+    </div>
+
+    <div id="texto">
+        <iframe name="corpo" id="corpo" contenteditable="true"></iframe>
+    </div>
+
+    <footer id="rodape"></footer>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.debug.js" integrity="sha384-THVO/sM0mFD9h7dfSndI6TS0PgAGavwKvB5hAxRRvc0o9cPLohB0wb/PTA7LdUHs" crossorigin="anonymous"></script>
+
+</body>
+</html>

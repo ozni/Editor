@@ -1,0 +1,106 @@
+/*MENU*/
+
+div#menu{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(73, 235, 122);
+    height: 100px;
+    margin: -10px;
+}
+
+div#menu ul li{
+    display: inline;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+i.fa{
+    line-height: 80px;
+    cursor: pointer;
+    font-size: 30pt;
+    color: black;
+}
+
+#save{
+    color: rgb(47, 5, 231);
+}
+
+
+#link{
+    color: blue;
+}
+
+#unlink{
+    color: red;
+}
+
+#fonts{
+    width: 70px;
+    height: 30px;
+}
+
+#tamanho{
+    width: 60px;
+    height: 25px;
+}
+
+#color{
+    width: 50px;
+    height: 30px;
+}
+
+/*CORPO*/
+
+iframe{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 80%;
+    height: 650px;
+    border: 1px solid black;
+    color: darkgreen;
+    text-decoration: underline;
+}
+
+/*RODAPE*/
+button#cont{
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+/*RESPONSIVIDADE*/
+@media (max-width: 910px){
+    i.fa{
+        font-size: 20pt;
+    }
+}
+
+@media (max-width: 800px){
+    i.fa{
+        font-size: 25pt;
+    }
+
+    div#menu{
+        height: 150px;
+        display: inline-block;
+    }
+
+    div#menu ul{
+        margin-top: 0px;
+    }
+}
+
+@media (max-width: 446px){
+    div#menu{
+        height: 220px;
+    }
+
+    div#menu ul{
+        display: table;
+        margin: 0 auto;
+    }
+}
