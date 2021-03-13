@@ -2,8 +2,24 @@ corpo.document.designMode = "on";
 
 botoes = document.querySelectorAll('i')
 botoes.forEach(bt =>{
-    bt.addEventListener('click', eval(bt.id))
+    bt.addEventListener('click', ()=>{
+        if ((bt.id === 'bold') || (bt.id === 'italic') || (bt.id === 'underline') || (bt.id === 'strikeThrough')){
+            negritoItalicoTachadoUnderline(bt.id)
+        } else if ((bt.id === 'center') || (bt.id === 'left') || (bt.id === 'right')){
+            alinhamento(bt.id)
+        } else {
+            eval(bt.id)()
+        }
+    })
 })
+
+function save(){
+    window.confirm('DICA! NO CAMPO "DESTINO", SELECIONE A OPÇÃO "SALVAR COMO PDF" SE A MESMA AINDA NÃO ESTIVER SELECIONADA EM SEU DISPOSITIVO')
+    document.querySelector('#menu').style.display="none"
+    document.querySelector('iframe').style="width: 90%; height: 95vh; border: none;"
+    window.print()
+    return continuar()
+}
 
 function changeFont(param){
     corpo.document.execCommand('fontName', 'false', param)
@@ -17,105 +33,42 @@ function changeColor(cor){
     corpo.document.execCommand('foreColor', false, cor)
 }
 
-function save(){
-    window.confirm('DICA! NO CAMPO "DESTINO", SELECIONE A OPÇÃO "SALVAR COMO PDF" SE A MESMA AINDA NÃO ESTIVER SELECIONADA EM SEU DISPOSITIVO')
-    document.querySelector('#menu').style.display="none"
-    document.querySelector('iframe').style="width: 90%; height: 95vh; border: none;"
-    window.print()
-    return continuar()
-}
-
-
-function bold(){
-    obj = document.querySelector('#bold').style
+function negritoItalicoTachadoUnderline(acao){
+    obj = document.querySelector(`#${acao}`).style
     if(obj.color === 'yellow'){
         obj.color = 'black'
-        corpo.document.execCommand('bold', false)
+        corpo.document.execCommand(acao, false)
     } else {
         obj.color = 'yellow'
-        corpo.document.execCommand('bold')
+        corpo.document.execCommand(acao)
     }   
 }
 
-function italic(){
-    obj = document.querySelector('#italic').style
+function alinhamento(acao){
+    // OUTRO1 E OUTRO2 REPRESENTA OS OUTROS 2 TIPOS DE ALINHAMENTO,
+    // A REFERENCIA FOI NECESSARIA POIS QUANDO 1 DOS 3 ALINHAMENTOS É CLICADO,
+    // DEVE FICAR AMARELO, E OS OUTROS 2 DEVEM FICAR PRETOS
+    if (acao === 'left'){
+        outro1 = document.querySelector('#center').style
+        outro2 = document.querySelector('#right').style
+    } else if (acao === 'right'){
+        outro1 = document.querySelector('#center').style
+        outro2 = document.querySelector('#left').style
+    } else {
+        outro1 = document.querySelector('#left').style
+        outro2 = document.querySelector('#right').style
+    }
+
+    obj = document.querySelector(`#${acao}`).style
     if(obj.color === 'yellow'){
         obj.color = 'black'
-        corpo.document.execCommand('italic', false)
-    } else {
-        obj.color = 'yellow'
-        corpo.document.execCommand('italic')
-    }
-}
-
-function underline(){
-    obj = document.querySelector('#underline').style
-    if(obj.color === 'yellow'){
-        obj.color = 'black'
-        corpo.document.execCommand('underline', false)
-    } else {
-        obj.color = 'yellow'
-        corpo.document.execCommand('underline')
-    }
-}
-
-function tachado(){
-    obj = document.querySelector('#tachado').style
-    if (obj.color === 'yellow'){
-        obj.color = 'black'
-        corpo.document.execCommand('strikeThrough', false)
-    } else {
-        obj.color = 'yellow'
-        corpo.document.execCommand('strikeThrough')
-    }
-}
-
-function left(){
-    centro = document.querySelector('#center').style
-    direita = document.querySelector('#right').style
-
-    obj = document.querySelector('#left').style
-    if(obj.color === 'yellow'){
-        obj.color = 'black'
-        corpo.document.execCommand('justifyLeft', false)
+        corpo.document.execCommand(`justify${acao}`, false)
     } else {
         //SE 1 É AMARELO OS OUTROS 2 TEM QUE SER PRETOS
         obj.color = 'yellow'
-        centro.color = 'black'
-        direita.color = 'black'
-        corpo.document.execCommand('justifyLeft')
-    }
-}
-
-function center(){
-    esquerda = document.querySelector('#left').style
-    direita = document.querySelector('#right').style
-
-    obj = document.querySelector('#center').style
-    if(obj.color === 'yellow'){
-        obj.color = 'black'
-        corpo.document.execCommand('justifyCenter', false)
-    } else {
-        obj.color = 'yellow'
-        esquerda.color = 'black'
-        direita.color = 'black'
-        corpo.document.execCommand('justifyCenter')
-    }
-}
-
-function right(){
-    esquerda = document.querySelector('#left').style
-    centro = document.querySelector('#center').style
-
-    obj = document.querySelector('#right').style
-    if(obj.color === 'yellow'){
-        obj.color = 'black'
-        corpo.document.execCommand('justifyRight', false)
-    } else {
-        obj.color = 'yellow'
-        centro.color = 'black'
-        esquerda.color = 'black'
-        corpo.document.execCommand('justifyRight')
+        outro1.color = 'black'
+        outro2.color = 'black'
+        corpo.document.execCommand(`justify${acao}`)
     }
 }
 

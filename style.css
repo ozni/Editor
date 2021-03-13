@@ -1,5 +1,4 @@
 /*MENU*/
-
 div#menu{
     display: flex;
     justify-content: center;
@@ -51,7 +50,6 @@ i.fa{
 }
 
 /*CORPO*/
-
 iframe{
     display: block;
     margin-left: auto;
@@ -65,11 +63,18 @@ iframe{
 }
 
 /*RODAPE*/
-button#cont{
-    display: none;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
+footer{
+    background-color: rgb(73, 235, 122);
+    margin-bottom: -10%;
+    padding: 2px;
+    text-align: center;
+    font-weight: 900;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(10, 7, 148);
 }
 
 /*RESPONSIVIDADE*/
