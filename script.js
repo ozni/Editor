@@ -1,23 +1,9 @@
 corpo.document.designMode = "on";
 
-document.querySelector('#save').addEventListener('click', salvar)
-document.querySelector('#bold').addEventListener('click', bold)
-document.querySelector('#italic').addEventListener('click', italic)
-document.querySelector('#underline').addEventListener('click', underline)
-document.querySelector('#tachado').addEventListener('click', tachado)
-document.querySelector('#left').addEventListener('click', left)
-document.querySelector('#right').addEventListener('click', right)
-document.querySelector('#center').addEventListener('click', center)
-document.querySelector('#link').addEventListener('click', link)
-document.querySelector('#unlink').addEventListener('click', removeLink)
-
-function salvar(){
-    window.confirm('DICA! NO CAMPO "DESTINO", SELECIONE A OPÇÃO "SALVAR COMO PDF" SE A MESMA AINDA NÃO ESTIVER SELECIONADA EM SEU DISPOSITIVO')
-    document.querySelector('#menu').style.display="none"
-    document.querySelector('iframe').style="width: 90%; height: 95vh; border: none;"
-    window.print()
-    return continuar()
-}
+botoes = document.querySelectorAll('i')
+botoes.forEach(bt =>{
+    bt.addEventListener('click', eval(bt.id))
+})
 
 function changeFont(param){
     corpo.document.execCommand('fontName', 'false', param)
@@ -30,6 +16,15 @@ function changeSize(tam){
 function changeColor(cor){
     corpo.document.execCommand('foreColor', false, cor)
 }
+
+function save(){
+    window.confirm('DICA! NO CAMPO "DESTINO", SELECIONE A OPÇÃO "SALVAR COMO PDF" SE A MESMA AINDA NÃO ESTIVER SELECIONADA EM SEU DISPOSITIVO')
+    document.querySelector('#menu').style.display="none"
+    document.querySelector('iframe').style="width: 90%; height: 95vh; border: none;"
+    window.print()
+    return continuar()
+}
+
 
 function bold(){
     obj = document.querySelector('#bold').style
@@ -135,7 +130,7 @@ function link(){
     }
 }
 
-function removeLink(){
+function unlink(){
     corpo.document.execCommand('unlink')
 }
 
